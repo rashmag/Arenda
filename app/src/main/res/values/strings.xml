@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Что-то рядом</string>
+    //Facebook Auth
+    <string name="facebook_app_id">856826188233454</string>
+    <string name="fb_login_protocol_scheme">fb856826188233454</string>
+    //BottomNavigationTitleBtn
+    <string name="title_history">Истории</string>
+    <string name="title_goals">Добавление</string>
+    <string name="title_chat">Чат</string>
+    <string name="title_favorite">Избранные</string>
+    <string name="title_user">Обо мне</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="user_fragment">User fragment</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="title_activity_maps_product">Map</string>
+    <string name="title_activity_search_nearby_maps">Map</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

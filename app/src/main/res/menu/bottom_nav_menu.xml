@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_lenta"
+        android:icon="@drawable/history_btn_icon"
+        android:title="@string/title_history" />
+
+    <item
+        android:id="@+id/navigation_favorite"
+        android:icon="@drawable/fav_btn_icon"
+        android:title="@string/title_favorite" />
+
+    <item
+        android:id="@+id/navigation_ads"
+        android:icon="@drawable/goals_btn_icon"
+        android:title="@string/title_goals" />
+
+    <item
+        android:id="@+id/navigation_chat"
+        android:icon="@drawable/chat_icon"
+        android:title="@string/title_chat" />
+
+    <item
+        android:id="@+id/navigation_user"
+        android:icon="@drawable/user_btn_icon"
+        android:title="@string/title_user" />
+
+</menu>

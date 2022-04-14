@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/mapContainer"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:map="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/map"
+        map:layout_constraintEnd_toEndOf="parent"
+        map:layout_constraintTop_toTopOf="parent"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".AddAds.MapsActivityAddAddress" />
+
+    <ImageView
+        android:layout_width="35dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/selectedPlaceBtn"
+        android:layout_marginTop="15dp"
+        android:layout_height="35dp"
+        android:id="@+id/searchViewMaps"
+        android:src="@drawable/search_icon"/>
+
+    <TextView
+        android:layout_width="0dp"
+        app:layout_constraintStart_toEndOf="@+id/searchViewMaps"
+        app:layout_constraintTop_toTopOf="@+id/searchViewMaps"
+        app:layout_constraintBottom_toBottomOf="@+id/searchViewMaps"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="10dp"
+        android:hint="Адрес"
+        android:textColorHint="@android:color/darker_gray"
+        android:textSize="20sp"
+        android:textColor="@android:color/white"
+        android:id="@+id/textViewAddress"
+        app:layout_constraintEnd_toStartOf="@+id/profile_loader"
+        android:layout_height="wrap_content"/>
+
+    <!--    <androidx.constraintlayout.widget.ConstraintLayout-->
+    <!--        android:id="@+id/pin_view_line"-->
+    <!--        android:layout_width="4dp"-->
+    <!--        android:layout_height="25dp"-->
+    <!--        android:background="@drawable/line_background"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/pin_view_circle" />-->
+
+<!--    <fragment-->
+<!--        android:id="@+id/autocomplete_fragment"-->
+<!--        android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/pin_view_circle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="100dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/animationView"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/marker_map" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ProgressBar
+        android:id="@+id/profile_loader"
+        android:layout_width="@dimen/inner_circle_radius"
+        android:layout_height="@dimen/inner_circle_radius"
+        android:indeterminate="true"
+        app:layout_constraintEnd_toEndOf="@+id/selectedPlaceBtn"
+        app:layout_constraintTop_toTopOf="@+id/searchViewMaps"
+        app:layout_constraintBottom_toBottomOf="@+id/searchViewMaps"/>
+
+    <ImageButton
+        android:id="@+id/ic_gps"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/btn_gps_form"
+        android:scaleType="centerCrop"
+        android:layout_marginBottom="30dp"
+        android:src="@drawable/gps_fixed"
+        app:layout_constraintBottom_toTopOf="@+id/selectedPlaceBtn"
+        app:layout_constraintEnd_toEndOf="@+id/selectedPlaceBtn" />
+
+
+    <Button
+        android:id="@+id/selectedPlaceBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginBottom="30dp"
+        android:background="@android:color/holo_blue_bright"
+        android:text="Выбрать"
+        android:textColor="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

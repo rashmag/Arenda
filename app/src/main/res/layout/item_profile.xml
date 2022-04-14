@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:cardCornerRadius="10dp"
+    app:cardUseCompatPadding="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:background="@drawable/form_for_ads_in_lenta"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:hint="Цена"
+            android:textColorHint="@android:color/darker_gray"
+            android:textColor="@android:color/black"
+            app:layout_constraintTop_toBottomOf="@+id/imageViewProfile"
+            android:id="@+id/priceTVProfile"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@+id/priceTVProfile"
+            android:layout_marginStart="10dp"
+            android:textColorHint="@android:color/darker_gray"
+            android:hint="время"
+            android:textColor="@android:color/black"
+            app:layout_constraintTop_toTopOf="@+id/priceTVProfile"
+            android:id="@+id/timeTVProfile"/>
+
+        <TextView
+            android:id="@+id/tvItemNameProfile"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:hint="Имя"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/priceTVProfile" />
+
+
+        <!--        <com.denzcoskun.imageslider.ImageSlider-->
+        <!--            android:id="@+id/imageSlider"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="100dp"-->
+        <!--            app:iss_auto_cycle="true"-->
+        <!--            app:iss_period="1000"-->
+        <!--            app:layout_constraintEnd_toEndOf="parent"-->
+        <!--            app:layout_constraintStart_toStartOf="parent"-->
+        <!--            app:layout_constraintTop_toBottomOf="@+id/tvItemName"-->
+        <!--            app:iss_delay="0"/>-->
+
+        <ImageView
+            android:id="@+id/imageViewProfile"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!--        <com.google.android.exoplayer2.ui.PlayerView-->
+        <!--            android:layout_width="190dp"-->
+        <!--            android:layout_height="100dp"-->
+        <!--            app:use_controller="false"-->
+        <!--            android:layout_marginTop="3dp"-->
+        <!--            app:resize_mode="fill"-->
+        <!--            android:id="@+id/exoplayer_item"/>-->
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>
+
+
