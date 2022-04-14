@@ -74,11 +74,10 @@ public class AddAds extends Fragment {
     private double latInt, lonInt;
     private View v;
     private UploadTask uploadTask;
-    private Button sendAds;
+    private TextView sendAds,btnSelectedImages;
     private EditText photoName, textViewDirection;
     private String mParam2;
-    private Button btnSelectedImages;
-    private TextView addAddress;
+    private TextView addAddress,tvAddress;
     private String selectTimeSeekBar = "Ч",time;
 
 
@@ -278,7 +277,7 @@ public class AddAds extends Fragment {
 //        });
         MainActivity ma = (MainActivity) this.getActivity();
         if (ma.placeIntent != null) {
-            addAddress.setText(ma.placeIntent);
+            tvAddress.setText(ma.placeIntent);
         }
         if (ma.latIntent != 0 && ma.lonIntent != 0) {
             latInt = ma.latIntent;
@@ -409,17 +408,14 @@ public class AddAds extends Fragment {
         modelAll.setPostId(push);
         modelAll.setLat(latInt);
         modelAll.setLon(lonInt);
-        modelAll.setAddress(addAddress.getText().toString());
+        modelAll.setAddress(tvAddress.getText().toString());
         modelAll.setDirection(textViewDirection.getText().toString());
         modelAll.setPublisher(firebaseAuth);
-        Log.d("priceTest"," push0 = " + push);
         databaseReference.child(push).setValue(modelAll).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
                     for (int i = 0; i < modelPrices.size(); i++) {
-                        Log.d("priceTest","i = " + i + modelPrices.get(i) +
-                                " push1 = " + push);
                         ModelPrice modelPrice = modelPrices.get(i);
                         databaseReference.child(push)
                                 .child("arrayprice").child(i + "").setValue(modelPrice).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -547,7 +543,7 @@ public class AddAds extends Fragment {
 
     private void init() {
         arrayPriceRecyclerView = v.findViewById(R.id.arrayPriceRVAddAds);
-        recyclerView = v.findViewById(R.id.rcv_photo);
+        recyclerView = v.findViewById(R.id.rv_photo);
         textViewDirection = v.findViewById(R.id.textViewDirection);
         priceEditText = v.findViewById(R.id.priceEditText);
         seekBarBubbleTime = v.findViewById(R.id.seekBarBubbleTime);
@@ -561,6 +557,7 @@ public class AddAds extends Fragment {
         sendAds = v.findViewById(R.id.sendAds);
         photoName = v.findViewById(R.id.photoName);
         addAddress = v.findViewById(R.id.addAddress);
+        tvAddress = v.findViewById(R.id.tv_address);
         btnSelectedImages = v.findViewById(R.id.btnSelectedImages);
     }
 

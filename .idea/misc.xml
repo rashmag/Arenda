@@ -4,7 +4,13 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Magomed/AndroidStudioProjects/Arenda/app/src/main/res/drawable/btn_gps_form.xml" value="0.26614583333333336" />
+        <entry key="..\:/Users/Magomed/AndroidStudioProjects/Arenda/app/src/main/res/drawable/btn_selec_img.xml" value="0.17760416666666667" />
+        <entry key="..\:/Users/Magomed/AndroidStudioProjects/Arenda/app/src/main/res/drawable/direction_add_ads.xml" value="0.17760416666666667" />
+        <entry key="..\:/Users/Magomed/AndroidStudioProjects/Arenda/app/src/main/res/drawable/form_for_ads_in_lenta.xml" value="0.17760416666666667" />
         <entry key="..\:/Users/Magomed/AndroidStudioProjects/Arenda/app/src/main/res/layout/activity_maps_product.xml" value="0.18568840579710144" />
+        <entry key="..\:/Users/Magomed/AndroidStudioProjects/Arenda/app/src/main/res/layout/fragment_add_ads.xml" value="0.22" />
+        <entry key="..\:/Users/Magomed/AndroidStudioProjects/Arenda/app/src/main/res/layout/fragment_profile.xml" value="0.16666666666666666" />
+        <entry key="..\:/Users/Magomed/AndroidStudioProjects/Arenda/app/src/main/res/layout/item_lenta.xml" value="0.4466666666666667" />
       </map>
     </option>
   </component>

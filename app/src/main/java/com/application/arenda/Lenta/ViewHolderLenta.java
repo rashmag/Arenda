@@ -39,10 +39,18 @@ public class ViewHolderLenta extends RecyclerView.ViewHolder {
     }
     public void setPriceAndTime(String price, String time){
         timeTVLenta = itemView.findViewById(R.id.timeTVLenta);
-        timeTVLenta.setText(time);
-
         priceTVLenta = itemView.findViewById(R.id.priceTVLenta);
-        priceTVLenta.setText(price);
+        if(time.isEmpty()){
+            timeTVLenta.setVisibility(View.GONE);
+        }else{
+            timeTVLenta.setText(time);
+        }
+        if(price.isEmpty()){
+            priceTVLenta.setVisibility(View.GONE);
+        }else{
+            priceTVLenta.setText(price);
+        }
+
     }
 
     public void setImageView(Application application,String Videourl) {
