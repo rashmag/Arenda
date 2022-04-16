@@ -44,8 +44,7 @@ public class MultiPriceViewHolder extends RecyclerView.Adapter<MultiPriceViewHol
     @Override
     public void onBindViewHolder(@NonNull PhotoViewHolder holder, int position) {
         ModelPrice modelPrice = mListPrice.get(position);
-        holder.multiTimeTextView.setText(modelPrice.getTime());
-        holder.multiPriceTextView.setText(modelPrice.getPrice());
+        holder.multiTimeTextView.setText(modelPrice.getPrice() + modelPrice.getTime());
         if(closeImageHide){
             holder.deletePriceImg.setVisibility(View.GONE);
         }
@@ -69,14 +68,13 @@ public class MultiPriceViewHolder extends RecyclerView.Adapter<MultiPriceViewHol
     }
 
     public class PhotoViewHolder extends RecyclerView.ViewHolder{
-        TextView multiTimeTextView,idPriceCount,multiPriceTextView;
+        TextView multiTimeTextView,idPriceCount;
         ImageView deletePriceImg;
         public PhotoViewHolder(View itemView){
             super(itemView);
             deletePriceImg = itemView.findViewById(R.id.deletePriceImg);
             idPriceCount = itemView.findViewById(R.id.idPriceCount);
-            multiTimeTextView = itemView.findViewById(R.id.multiTimeTextView);
-            multiPriceTextView = itemView.findViewById(R.id.multiPriceTextView);
+            multiTimeTextView = itemView.findViewById(R.id.multiTimeAndPriceTextView);
         }
     }
 

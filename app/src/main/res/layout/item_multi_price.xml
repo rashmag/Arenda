@@ -20,10 +20,9 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayoutMulriPrice"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -33,12 +32,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@android:color/black"
-            app:layout_constraintEnd_toEndOf="@+id/multiTimeTextView"
-            app:layout_constraintStart_toStartOf="@+id/multiTimeTextView"
+            app:layout_constraintEnd_toEndOf="@+id/multiTimeAndPriceTextView"
+            app:layout_constraintStart_toStartOf="@+id/multiTimeAndPriceTextView"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/multiTimeTextView"
+            android:id="@+id/multiTimeAndPriceTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -50,20 +49,6 @@
             android:textColorHint="@android:color/darker_gray"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/idPriceCount" />
-
-        <TextView
-            android:id="@+id/multiPriceTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            android:background="@drawable/price_and_time_form"
-            android:gravity="center"
-            android:hint="цена"
-            android:padding="5dp"
-            android:textColor="@android:color/black"
-            android:textColorHint="@android:color/darker_gray"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/multiTimeTextView" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

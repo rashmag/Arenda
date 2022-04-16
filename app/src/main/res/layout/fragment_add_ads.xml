@@ -22,27 +22,28 @@
 
 
             <TextView
+                android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="48dp"
                 android:text="Сдать в аренду:"
-                android:id="@+id/title"
                 android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginTop="48dp"/>
+                app:layout_constraintTop_toTopOf="parent" />
+
             <EditText
-                android:textColorHint="@android:color/darker_gray"
-                android:paddingHorizontal="16dp"
-                android:background="@drawable/direction_add_ads"
                 android:id="@+id/photoName"
                 android:layout_width="0dp"
-                android:minHeight="40dp"
                 android:layout_height="40dp"
                 android:layout_marginTop="20dp"
+                android:background="@drawable/direction_add_ads"
                 android:hint="Название"
-                android:textColor="@android:color/black"
+                android:minHeight="40dp"
+                android:paddingHorizontal="16dp"
                 android:textAlignment="textStart"
+                android:textColor="@android:color/black"
+                android:textColorHint="@android:color/darker_gray"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/title" />
@@ -52,100 +53,165 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
-                android:text="Адрес"
                 android:layout_marginTop="24dp"
+                android:fontFamily="@font/manrope_semi_bold"
+                android:text="Адрес"
                 android:textColor="@android:color/black"
                 android:textSize="16sp"
-                android:fontFamily="@font/manrope_semi_bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btnSelectedImages" />
+                app:layout_constraintTop_toBottomOf="@+id/btn_price" />
 
             <TextView
-                android:drawableStart="@drawable/icon_point"
-                android:paddingHorizontal="16dp"
-                android:drawablePadding="10dp"
-                android:background="@drawable/direction_add_ads"
                 android:id="@+id/tv_address"
-                android:maxLines="1"
-                android:textColorHint="@android:color/darker_gray"
-                android:ellipsize="end"
-                android:singleLine="true"
                 android:layout_width="0dp"
-                android:minHeight="40dp"
                 android:layout_height="40dp"
                 android:layout_marginTop="10dp"
+                android:background="@drawable/direction_add_ads"
+                android:drawableStart="@drawable/icon_point"
+                android:drawablePadding="10dp"
+                android:ellipsize="end"
                 android:gravity="center_vertical"
                 android:hint="Название"
+                android:maxLines="1"
+                android:minHeight="40dp"
+                android:paddingHorizontal="16dp"
+                android:singleLine="true"
                 android:textColor="@android:color/black"
+                android:textColorHint="@android:color/darker_gray"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/addAddress" />
+
             <TextView
                 android:id="@+id/imgTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="26dp"
+                android:fontFamily="@font/manrope_semi_bold"
                 android:text="Изображение:"
                 android:textColor="#32000000"
                 android:textSize="16sp"
-                android:fontFamily="@font/manrope_semi_bold"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginTop="26dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/rv_photo" />
+
             <TextView
                 android:id="@+id/btnSelectedImages"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
-                android:paddingHorizontal="70dp"
-                android:gravity="center"
                 android:layout_marginTop="16dp"
-                android:textColor="@color/white"
                 android:layout_marginBottom="20dp"
                 android:background="@drawable/btn_select_img"
-                android:text="Выбрать"
                 android:drawableEnd="@drawable/select_img"
                 android:drawablePadding="10dp"
+                android:gravity="center"
+                android:paddingHorizontal="70dp"
+                android:text="Выбрать"
+                android:textColor="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imgTV" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/titleTarif"
+                android:textColor="@color/black"
+                android:text="Тариф"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnSelectedImages"
+                android:textSize="16sp"
+                android:fontFamily="@font/manrope_semi_bold"
+                android:layout_marginTop="20dp"/>
+
+
+            <EditText
+                android:id="@+id/ed_tarif_hour"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/direction_add_ads"
+                android:hint="₽/час"
+                android:minHeight="40dp"
+                android:paddingHorizontal="16dp"
+                android:textAlignment="textStart"
+                android:textColor="@android:color/black"
+                android:textColorHint="@android:color/darker_gray"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/titleTarif" />
+
+            <EditText
+                android:id="@+id/ed_tarif_day"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/direction_add_ads"
+                android:hint="₽/день"
+                android:minHeight="40dp"
+                android:paddingHorizontal="16dp"
+                android:textAlignment="textStart"
+                android:textColor="@android:color/black"
+                android:textColorHint="@android:color/darker_gray"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ed_tarif_hour" />
+
+            <TextView
+                android:id="@+id/btn_price"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/btn_select_img"
+                android:gravity="center"
+                android:paddingHorizontal="70dp"
+                android:text="Добавить"
+                android:textColor="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ed_tarif_day" />
+
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_photo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minHeight="100dp"
                 android:layout_marginTop="10dp"
+                android:minHeight="100dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textViewDirection" />
 
             <TextView
-                android:background="@drawable/btn_select_img"
                 android:id="@+id/sendAds"
-                android:fontFamily="@font/manrope_semi_bold"
-                android:textSize="18sp"
-                android:layout_marginTop="20dp"
-                android:paddingHorizontal="55dp"
-                android:paddingVertical="12dp"
-                android:textColor="@color/white"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
                 android:layout_marginBottom="30dp"
+                android:background="@drawable/btn_select_img"
+                android:fontFamily="@font/manrope_semi_bold"
+                android:paddingHorizontal="55dp"
+                android:paddingVertical="12dp"
                 android:text="Опубликовать"
+                android:textColor="@color/white"
+                android:textSize="18sp"
                 app:layout_constraintBottom_toTopOf="@+id/progressBar_main"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/timeSeekBar" />
+                app:layout_constraintTop_toBottomOf="@+id/arrayPriceRVAddAds" />
 
             <EditText
                 android:id="@+id/textViewDirection"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
                 android:background="@drawable/direction_add_ads"
                 android:gravity="top"
-                android:layout_marginTop="16dp"
                 android:hint="Описание"
                 android:minHeight="100dp"
                 android:padding="10dp"
@@ -155,141 +221,16 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/photoName" />
+
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/arrayPriceRVAddAds"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:id="@+id/arrayPriceRVAddAds"
-                app:layout_constraintTop_toBottomOf="@+id/tv_address"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                    />
+                app:layout_constraintTop_toBottomOf="@+id/tv_address" />
 
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="10dp"
-            android:id="@+id/linLayoutGroupsBtnsTime"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/arrayPriceRVAddAds">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/form_from_btn_time_arenda_uncheck"
-                android:text="Ч"
-                android:gravity="center"
-                android:id="@+id/hoursBtnTime"
-                app:layout_constraintStart_toStartOf="@+id/linLayoutAddAds"
-                app:layout_constraintTop_toBottomOf="@+id/textViewDirection" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/form_from_btn_time_arenda_uncheck"
-                android:gravity="center"
-                android:text="Д"
-                android:id="@+id/daysBtnTime"
-                app:layout_constraintStart_toEndOf="@+id/hoursBtnTime"
-                android:layout_marginStart="10dp"
-                app:layout_constraintTop_toBottomOf="@+id/textViewDirection" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/form_from_btn_time_arenda_uncheck"
-                android:text="Н"
-                android:gravity="center"
-                android:layout_marginStart="10dp"
-                android:id="@+id/weekBtnTime"
-                app:layout_constraintStart_toEndOf="@+id/daysBtnTime"
-                app:layout_constraintTop_toBottomOf="@+id/textViewDirection" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/form_from_btn_time_arenda_uncheck"
-                android:text="М"
-                android:gravity="center"
-                android:layout_marginStart="10dp"
-                android:id="@+id/mouthBtnTime"
-                app:layout_constraintStart_toEndOf="@+id/weekBtnTime"
-                app:layout_constraintTop_toBottomOf="@+id/textViewDirection" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/form_from_btn_time_arenda_uncheck"
-                android:text="Г"
-                android:gravity="center"
-                android:layout_marginStart="10dp"
-                android:id="@+id/yearsBtnTime"
-                app:layout_constraintStart_toEndOf="@+id/mouthBtnTime"
-                app:layout_constraintTop_toBottomOf="@+id/textViewDirection" />
-        </LinearLayout>
-            <LinearLayout
-                android:id="@+id/linLayoutBubbleSeekBar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="20dp"
-                android:layout_marginTop="20dp"
-                android:orientation="vertical"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linLayoutGroupsBtnsTime">
-
-                <com.xw.repo.BubbleSeekBar
-                    android:id="@+id/seekBarBubbleTime"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:bsb_bubble_color="#0EF4CD"
-                    app:bsb_bubble_text_color="@android:color/white"
-                    app:bsb_max="24"
-                    app:bsb_progress="0"
-                    app:bsb_second_track_color="#0EF4CD"
-                    app:bsb_section_count="24"
-                    app:bsb_section_text_color="@color/black"
-                    app:bsb_section_text_position="bottom_sides"
-                    app:bsb_show_section_mark="true"
-                    app:bsb_show_section_text="true"
-                    app:bsb_show_thumb_text="true"
-                    app:bsb_touch_to_seek="true" />
-            </LinearLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/priceTextInputLayout"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="32dp"
-                android:hint="Цена"
-                android:textColor="@android:color/black"
-                android:textColorHint="@android:color/darker_gray"
-                app:boxStrokeColor="@android:color/darker_gray"
-                app:counterEnabled="true"
-                app:counterMaxLength="7"
-                app:counterTextColor="@android:color/black"
-                app:hintTextColor="@android:color/darker_gray"
-                app:layout_constraintBottom_toTopOf="@+id/loginTextInputLayout"
-                app:layout_constraintEnd_toEndOf="@+id/loginTextInputLayout"
-                app:layout_constraintStart_toStartOf="@+id/loginTextInputLayout"
-                app:layout_constraintTop_toBottomOf="@+id/linLayoutBubbleSeekBar">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/priceEditText"
-                    android:maxLength="7"
-                    android:inputType="numberDecimal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/black" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <Button
-                android:id="@+id/timeSeekBar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Добавить"
-                app:layout_constraintEnd_toEndOf="@+id/linLayoutBubbleSeekBar"
-                app:layout_constraintStart_toStartOf="@id/linLayoutBubbleSeekBar"
-                app:layout_constraintTop_toBottomOf="@+id/priceTextInputLayout" />
 
             <ProgressBar
                 android:id="@+id/progressBar_main"

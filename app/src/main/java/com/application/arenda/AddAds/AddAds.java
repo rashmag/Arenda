@@ -5,32 +5,27 @@ import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.webkit.MimeTypeMap;
+import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.text.TextUtils;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.webkit.MimeTypeMap;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ProgressBar;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import com.application.arenda.Ads.MoneyTextWatcher;
 import com.application.arenda.MainActivity;
 import com.application.arenda.Model.ModelAll;
 import com.application.arenda.R;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -39,7 +34,6 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.gun0912.tedpermission.PermissionListener;
 import com.gun0912.tedpermission.TedPermission;
-import com.xw.repo.BubbleSeekBar;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -50,17 +44,13 @@ import gun0912.tedbottompicker.TedBottomSheetDialogFragment;
 
 public class AddAds extends Fragment {
     private ProgressBar progressBar;
-    private BubbleSeekBar seekBarBubbleTime;
-    private TextInputEditText priceEditText;
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private ModelAll modelAll, modelAll2;
     private ModelAll modelAuth;
     private String currentPrice;
-    private Button timeSeekBar;
-    private TextView hoursBtnTime, daysBtnTime, weekBtnTime,
-            mouthBtnTime, yearsBtnTime;
-    private RecyclerView recyclerView,arrayPriceRecyclerView;
+    private EditText edTarifHour,edTarifDay;
+    private RecyclerView recyclerView, arrayPriceRecyclerView;
     private MultiSelectImageViewHolder multiSelectImageViewHolder;
     private MultiPriceViewHolder multiPriceViewHolder;
     private StorageReference storageReference, storageReferenceMulti;
@@ -74,11 +64,11 @@ public class AddAds extends Fragment {
     private double latInt, lonInt;
     private View v;
     private UploadTask uploadTask;
-    private TextView sendAds,btnSelectedImages;
+    private TextView sendAds, btnSelectedImages;
     private EditText photoName, textViewDirection;
     private String mParam2;
-    private TextView addAddress,tvAddress;
-    private String selectTimeSeekBar = "Ч",time;
+    private TextView addAddress, tvAddress,btnPrice;
+    private String selectTimeSeekBar = "Ч", time;
 
 
     public AddAds() {
@@ -110,171 +100,10 @@ public class AddAds extends Fragment {
         getActivity().getWindow().setStatusBarColor(getResources().getColor(R.color.fragment_white));
         //Инициализируем
         init();
-        priceEditText.addTextChangedListener(new MoneyTextWatcher(priceEditText));
         modelPrices = new ArrayList<>();
-//        priceEditText.addTextChangedListener(new TextWatcher() {
-//            @Override
-//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-//
-//            }
-//
-//            @Override
-//            public void onTextChanged(CharSequence s, int start, int before, int count) {
-//
-//            }
-//
-//            @Override
-//            public void afterTextChanged(Editable s) {
-//                Toast.makeText(getActivity(), "0", Toast.LENGTH_SHORT).show();
-//                if (!priceEditText.getText().toString().equals("")) {
-//                    priceEditText.removeTextChangedListener(this);
-//                    String cleanString = priceEditText.getText().toString().replace("[Р,.]",
-//                            "");
-//                    BigDecimal parsed = new BigDecimal(cleanString).setScale(2,BigDecimal.ROUND_FLOOR)
-//                            .divide(new BigDecimal(100),BigDecimal.ROUND_FLOOR);
-////                    double parsed = Double.parseDouble(cleanString);
-//                    String formatted = NumberFormat.getCurrencyInstance().format(parsed);
-//                    currentPrice = formatted;
-//                    priceEditText.setText(formatted);
-//                    priceEditText.addTextChangedListener(this);
-//                    Toast.makeText(getActivity(), "1 = ", Toast.LENGTH_SHORT).show();
-////                    priceEditText.setText(priceEditText.getText().toString() + " р");
-//                }
-//            }
-//        });
-        hoursBtnTime.setBackgroundResource(R.drawable.form_from_btn_time_arenda_check);
-        hoursBtnTime.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                selectTimeSeekBar = "Ч";
-                seekBarBubbleTime.getConfigBuilder().max(24 * 1).sectionCount(24).build();
-                hoursBtnTime.setBackgroundResource(R.drawable.form_from_btn_time_arenda_check);
-                daysBtnTime.setBackgroundResource(R.drawable.form_from_btn_time_arenda_uncheck);
-                weekBtnTime.setBackgroundResource(R.drawable.form_from_btn_time_arenda_uncheck);
-                mouthBtnTime.setBackgroundResource(R.drawable.form_from_btn_time_arenda_uncheck);
-                yearsBtnTime.setBackgroundResource(R.drawable.form_from_btn_time_arenda_uncheck);
-            }
-        });
-        //Добавляем цену
-        timeSeekBar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (modelPrices.size()+1 < 6) {
-                    switch (selectTimeSeekBar) {
-                        case "Ч":
-                            time = " часа";
-                            break;
-                        case "Д":
-                            time = " дня";
-                            break;
-                        case "Н":
-                            time = " недели";
-                            break;
-                        case "М":
-                            time = " месяца";
-                            break;
-                        case "Г":
-                            time = " год";
-                            break;
-                    }
-                    Log.d("multiPrice", "Цена = " + priceEditText.getText().toString()
-                            + " Время = " + seekBarBubbleTime.getProgress());
-                    if(seekBarBubbleTime.getProgress() == 0){
-                        Toast.makeText(getActivity(), "Выберите срок",
-                                Toast.LENGTH_SHORT).show();
-                    }else if(priceEditText.getText().toString().equals("")) {
-                        priceEditText.setError("Введите цену");
-                    }else{
-                        String price = priceEditText.getText().toString();
-                        String progressTime = seekBarBubbleTime.getProgress() + "";
-                        ModelPrice modelPrice = new ModelPrice();
-                        modelPrice.setPrice(price);
-                        modelPrice.setTime(progressTime + time);
-                        modelPrices.add(modelPrice);
-                        if (modelPrices != null) {
-                            multiPriceViewHolder.setData(modelPrices);
-                        }
-                    }
-                }
-            }
-        });
-        daysBtnTime.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                selectTimeSeekBar = "Д";
-                seekBarBubbleTime.getConfigBuilder().max(31 * 1).sectionCount(31).build();
-                daysBtnTime.setBackgroundResource(R.drawable.form_from_btn_time_arenda_check);
-                hoursBtnTime.setBackgroundResource(R.drawable.form_from_btn_time_arenda_uncheck);
-                weekBtnTime.setBackgroundResource(R.drawable.form_from_btn_time_arenda_uncheck);
-                mouthBtnTime.setBackgroundResource(R.drawable.form_from_btn_time_arenda_uncheck);
-                yearsBtnTime.setBackgroundResource(R.drawable.form_from_btn_time_arenda_uncheck);
-            }
-        });
-        weekBtnTime.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                selectTimeSeekBar = "Н";
-                seekBarBubbleTime.getConfigBuilder().max(4 * 1).sectionCount(4).build();
-                weekBtnTime.setBackgroundResource(R.drawable.form_from_btn_time_arenda_check);
-                hoursBtnTime.setBackgroundResource(R.drawable.form_from_btn_time_arenda_uncheck);
-                daysBtnTime.setBackgroundResource(R.drawable.form_from_btn_time_arenda_uncheck);
-                mouthBtnTime.setBackgroundResource(R.drawable.form_from_btn_time_arenda_uncheck);
-                yearsBtnTime.setBackgroundResource(R.drawable.form_from_btn_time_arenda_uncheck);
-            }
-        });
-        mouthBtnTime.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                selectTimeSeekBar = "М";
-                seekBarBubbleTime.getConfigBuilder().max(12 * 1).sectionCount(12).build();
-                mouthBtnTime.setBackgroundResource(R.drawable.form_from_btn_time_arenda_check);
-                hoursBtnTime.setBackgroundResource(R.drawable.form_from_btn_time_arenda_uncheck);
-                daysBtnTime.setBackgroundResource(R.drawable.form_from_btn_time_arenda_uncheck);
-                weekBtnTime.setBackgroundResource(R.drawable.form_from_btn_time_arenda_uncheck);
-                yearsBtnTime.setBackgroundResource(R.drawable.form_from_btn_time_arenda_uncheck);
-            }
-        });
-        yearsBtnTime.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                selectTimeSeekBar = "Г";
-                seekBarBubbleTime.getConfigBuilder().max(1 * 1).sectionCount(1).build();
-                yearsBtnTime.setBackgroundResource(R.drawable.form_from_btn_time_arenda_check);
-                hoursBtnTime.setBackgroundResource(R.drawable.form_from_btn_time_arenda_uncheck);
-                daysBtnTime.setBackgroundResource(R.drawable.form_from_btn_time_arenda_uncheck);
-                weekBtnTime.setBackgroundResource(R.drawable.form_from_btn_time_arenda_uncheck);
-                mouthBtnTime.setBackgroundResource(R.drawable.form_from_btn_time_arenda_uncheck);
-            }
-        });
-        seekBarBubbleTime.setOnProgressChangedListener(new BubbleSeekBar.OnProgressChangedListener() {
-            @Override
-            public void onProgressChanged(BubbleSeekBar bubbleSeekBar, int progress,
-                                          float progressFloat, boolean fromUser) {
+        multiPriceViewHolder = new MultiPriceViewHolder(getActivity(), false);
+        setAddPrice(modelPrices);
 
-            }
-
-            @Override
-            public void getProgressOnActionUp(BubbleSeekBar bubbleSeekBar, int progress, float progressFloat) {
-
-            }
-
-            @Override
-            public void getProgressOnFinally(BubbleSeekBar bubbleSeekBar, int progress, float progressFloat, boolean fromUser) {
-
-            }
-        });
-//        seekBarBubbleTime.setCustomSectionTextArray(new BubbleSeekBar.CustomSectionTextArray() {
-//            @NonNull
-//            @Override
-//            public SparseArray<String> onCustomize(int sectionCount,
-//                                                   @NonNull SparseArray<String> array) {
-//                array.clear();
-//                array.put(1,"Н");
-//                array.put(5,"о");
-//                array.put(9,"с");
-//                return array;
-//            }
-//        });
         MainActivity ma = (MainActivity) this.getActivity();
         if (ma.placeIntent != null) {
             tvAddress.setText(ma.placeIntent);
@@ -284,7 +113,7 @@ public class AddAds extends Fragment {
             lonInt = ma.lonIntent;
         }
         multiSelectImageViewHolder = new MultiSelectImageViewHolder(getActivity());
-        multiPriceViewHolder = new MultiPriceViewHolder(getActivity(),false);
+
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(),
                 LinearLayoutManager.HORIZONTAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
@@ -343,6 +172,29 @@ public class AddAds extends Fragment {
         });
         // Inflate the layout for this fragment
         return v;
+    }
+
+    private void setAddPrice(List<ModelPrice> modelPrices) {
+        btnPrice.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(!TextUtils.isEmpty(edTarifHour.getText().toString())){
+                    ModelPrice modelPrice = new ModelPrice();
+                    modelPrice.setPrice(edTarifHour.getText().toString());
+                    modelPrice.setTime("₽ в час");
+                    modelPrices.add(modelPrice);
+                }else if(!TextUtils.isEmpty(edTarifDay.getText().toString())){
+                    ModelPrice modelPrice = new ModelPrice();
+                    modelPrice.setPrice(edTarifDay.getText().toString());
+                    modelPrice.setTime("₽ за день");
+                    modelPrices.add(modelPrice);
+                }
+
+                if (modelPrices != null) {
+                    multiPriceViewHolder.setData(modelPrices);
+                }
+            }
+        });
     }
 //    private void UploadVideo() {
 //        String videoNameEd = photoName.getText().toString();
@@ -469,7 +321,6 @@ public class AddAds extends Fragment {
                                 }
                             }
                         });
-                        Log.d("test123", "i1 = " + downloadUri.toString());
                     }
                 }
             });
@@ -515,9 +366,9 @@ public class AddAds extends Fragment {
                             uriListSend = uriList;
                             multiSelectImageViewHolder.setData(uriList);
                             if (uriList.size() != 0) {
-                                btnSelectedImages.setText("Выбрать заново");
+                                btnSelectedImages.setText("Загружить еще");
                             } else {
-                                btnSelectedImages.setText("Выбрать изображение");
+                                btnSelectedImages.setText("Выбрать");
                             }
                         }
                         // here is selected image uri list
@@ -545,17 +396,12 @@ public class AddAds extends Fragment {
         arrayPriceRecyclerView = v.findViewById(R.id.arrayPriceRVAddAds);
         recyclerView = v.findViewById(R.id.rv_photo);
         textViewDirection = v.findViewById(R.id.textViewDirection);
-        priceEditText = v.findViewById(R.id.priceEditText);
-        seekBarBubbleTime = v.findViewById(R.id.seekBarBubbleTime);
-        timeSeekBar = v.findViewById(R.id.timeSeekBar);
-        hoursBtnTime = v.findViewById(R.id.hoursBtnTime);
-        daysBtnTime = v.findViewById(R.id.daysBtnTime);
-        weekBtnTime = v.findViewById(R.id.weekBtnTime);
-        mouthBtnTime = v.findViewById(R.id.mouthBtnTime);
-        yearsBtnTime = v.findViewById(R.id.yearsBtnTime);
         progressBar = v.findViewById(R.id.progressBar_main);
         sendAds = v.findViewById(R.id.sendAds);
         photoName = v.findViewById(R.id.photoName);
+        edTarifDay = v.findViewById(R.id.ed_tarif_day);
+        btnPrice = v.findViewById(R.id.btn_price);
+        edTarifHour = v.findViewById(R.id.ed_tarif_hour);
         addAddress = v.findViewById(R.id.addAddress);
         tvAddress = v.findViewById(R.id.tv_address);
         btnSelectedImages = v.findViewById(R.id.btnSelectedImages);
